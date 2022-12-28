@@ -21,6 +21,10 @@
     <strong>注意！本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼。</strong>
   </header>
   <main class="board">
+    <div>
+      <a  class="board__btn" href="./register.php">註冊</a>
+      <a class="board__btn" href="./login.php">登入</a>
+    </div>
     <h1 class="board__title">Comments</h1>
     <?php
       if (!empty($_GET['errCode'])) {

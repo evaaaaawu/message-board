@@ -14,6 +14,12 @@ body {
   text-align: center;
 }
 
+.error {
+  background: #ffc4c6;
+  color: #a20606;
+  padding: 10px;
+}
+
 .board {
   background: white;
   width: 100%;
@@ -30,16 +36,21 @@ body {
   border: 1px solid #c2dffb;
 }
 
-.board__nickname {
+.board__nickname,
+.board__username,
+.board__password {
   margin-bottom: 10px;
 }
 
-.board__nickname input {
+.board__nickname input,
+.board__username input,
+.board__password input {
   border: 1px solid #c2dffb;
   padding: 5px;
 }
 
 .board__submit-btn {
+  margin-top: 10px;
   padding: 10px;
   border: 1px solid #c2dffb;
   border-radius: 5px;
@@ -88,4 +99,16 @@ body {
 
 .card__time {
   color: #a0a0a0;
+}
+
+.board__btn {
+  padding: 10px 30px;
+  border: 1px solid #c2dffb;
+  border-radius: 5px;
+  color: black;
+  font-size: 16px;
+  background: white;
+  min-width: 20px;
+  text-decoration: none;
+  display: inline-block;
 }
