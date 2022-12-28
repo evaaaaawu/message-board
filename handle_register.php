@@ -14,7 +14,12 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "INSERT INTO users( nickname, username, password ) VALUES( $nickname, '$username', $password )";
+  $sql = sprintf (
+    "INSERT INTO users(nickname, username, password) VALUES('%s', '%s', '%s')",
+    $nickname,
+    $username,
+    $password
+  );
 
   $result = $conn->query($sql);
 
