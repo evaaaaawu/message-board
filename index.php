@@ -1,3 +1,12 @@
+<?php
+  require_once("conn.php");
+  $sql = "SELECT * FROM comments ORDER BY id DESC";
+  $result = $conn->query($sql);
+  if(!$result) {
+    die("Error:" . $conn->error);
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,18 +32,21 @@
     </form>
     <div class="board__hr"></div>
     <section>
-      <div class="card">
-        <div class="card__avatar"></div>
-        <div class="card__body">
-          <div class="card__info">
-            <span class="card__author">Eva</span>
-            <span class="card__time">2022.12.27 11:11:11</span>
+      <?php while($row = $result->fetch_assoc()) { ?>
+        <div class="card">
+          <div class="card__avatar"></div>
+          <div class="card__body">
+            <div class="card__info">
+              <span class="card__author"><?php echo $row['nickname']; ?></span>
+              <span class="card__time"><?php echo $row['created_at']; ?></span>
+            </div>
+            <p class="card__content">
+              <?php echo $row['content']; ?>
+            </p>
           </div>
-          <p class="card__content">
-              留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容留言內容
-          </p>
         </div>
-      </div>
+      <?php } ?>
+      
     </section>
   </main>
 </body>
