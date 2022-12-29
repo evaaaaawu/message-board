@@ -24,7 +24,10 @@
   }
 
   if ($result->num_rows) {
-    echo "登入成功!!";
+    // 登入成功
+    $expire = time() + 3600 * 24 * 30;
+    setcookie("username", $username, $expire );
+    header("Location: index.php");
   } else {
     header("Location: login.php?errCode=2");
   }
