@@ -1,5 +1,6 @@
 <?php
   require_once('conn.php');
+  require_once('utils.php');
 
   if (
     empty($_POST['content'])
@@ -8,15 +9,9 @@
     die('資料不齊全');
   }
 
-  $username = $_COOKIE['username'];
-  $user_sql = sprintf(
-    "SELECT nickname FROM users WHERE username='%s'",
-    $username
-  );
-  $user_result = $conn->query($user_sql);
-  $row = $user_result->fetch_assoc();
-  
-  $nickname = $row['nickname'];
+  $user = getUserFromToken($_COOKIE['token']);
+  $nickname = $user['nickname'];
+
   $content = $_POST['content'];
 
   $sql = sprintf (
