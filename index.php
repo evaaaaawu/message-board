@@ -1,13 +1,13 @@
 <?php
+  session_start();
   require_once("conn.php");
   require_once("utils.php");
 
   $username = NULL;
-  if(!empty($_COOKIE['token'])) {
-    $user = getUserFromToken($_COOKIE['token']);
-    $username = $user['username'];
+  if(!empty($_SESSION['username'])) {
+    $username = $_SESSION['username'];
   }
-
+  
   $sql = "SELECT * FROM comments ORDER BY id DESC";
   $result = $conn->query($sql);
   if(!$result) {
@@ -36,6 +36,7 @@
           <a class="board__btn" href="./login.php">登入</a>
         <?php } else { ?>
           <a class="board__btn" href="./logout.php">登出</a>
+          <h3>你好！<?php echo $username; ?></h3>
         <?php } ?>
       </div>
     <h1 class="board__title">Comments</h1>
