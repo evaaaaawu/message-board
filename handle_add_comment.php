@@ -16,8 +16,8 @@
   $content = $_POST['content'];
   $sql = sprintf (
     "INSERT INTO comments(nickname, content) VALUES('%s', '%s')",
-    $nickname,
-    $content
+    escape($nickname),
+    escape($content)
   );
   $result = $conn->query($sql);
   if (!$result) {
