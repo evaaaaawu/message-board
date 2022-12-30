@@ -15,9 +15,8 @@
   $password = $_POST['password'];
 
   $sql = sprintf (
-    "SELECT * FROM users WHERE username='%s' and password='%s'",
-    $username,
-    $password
+    "SELECT * FROM users WHERE username='%s'",
+    $username
   );
 
   $result = $conn->query($sql);
@@ -25,12 +24,16 @@
     die($conn->error);
   }
 
-  if ($result->num_rows) {
-  
+  if ($result->num_rows === 0) {
+    header("Location: login.php?errCode=2");
+    exit();
+  }
+
+  // 有查到使用者
+  $row = $result->fetch_assoc();
+  if (password_verify($password, $row['password'])) {
     // 登入成功
     $_SESSION['username'] = $username;
-    $expire = time() + 3600 * 24 * 30;
-    setcookie("token", $token, $expire );
     header("Location: index.php");
   } else {
     header("Location: login.php?errCode=2");
