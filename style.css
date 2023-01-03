@@ -112,3 +112,11 @@ body {
   text-decoration: none;
   display: inline-block;
 }
+
+.board__nickname-form {
+  margin-top: 20px;
+}
+
+.hide {
+  display: none;
+}
