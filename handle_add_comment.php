@@ -10,13 +10,12 @@
     die('資料不齊全');
   }
 
-  $user = getUserFromUsername($_SESSION['username']);
-  $nickname = $user['nickname'];
+  $username = $_SESSION['username'];
 
   $content = $_POST['content'];
-  $sql = "INSERT INTO comments(nickname, content) VALUES(?, ?)";
+  $sql = "INSERT INTO comments(username, content) VALUES(?, ?)";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('ss', $nickname, $content);
+  $stmt->bind_param('ss', $username, $content);
   $result = $stmt->execute();
   if (!$result) {
     die($conn->error);
