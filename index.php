@@ -11,7 +11,7 @@
   }
   
   $stmt = $conn->prepare(
-  'SELECT C.id as id, C.content as content, C.created_at as created_at, U.nickname as nickname, U.username as username FROM comments as C LEFT JOIN users as U ON C.username = U.username ORDER BY C.id DESC'
+  'SELECT C.id as id, C.content as content, C.created_at as created_at, U.nickname as nickname, U.username as username FROM comments as C LEFT JOIN users as U ON C.username = U.username WHERE C.is_deleted IS NULL ORDER BY C.id DESC'
   );
   $result = $stmt->execute();
   if(!$result) {
@@ -85,6 +85,7 @@
               <span class="card__time"><?php echo escape($row['created_at']); ?></span>
               <?php if ($row['username'] === $username) { ?>
                 <a href="update_comment.php?id=<?php echo $row['id'] ?>">編輯</a>
+                <a href="delete_comment.php?id=<?php echo $row['id'] ?>">刪除</a>
               <?php } ?>
             </div>
             <p class="card__content">
